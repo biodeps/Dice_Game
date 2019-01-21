@@ -9,5 +9,8 @@
     <string name="hint_Username">What\'s your UserName?</string>
     <string name="example_Username">Username Example</string>
     <string name="example_Description">This is a description example. Have a nice day!</string>
+    <string name="toastRepeatedUser">Username already exists. Please, try again</string>
+    <string name="toastInvalidUser">Username can\'t be empty. Please, try again</string>
+    <string name="toastCreatedUser">New player created</string>
 
 </resources>
