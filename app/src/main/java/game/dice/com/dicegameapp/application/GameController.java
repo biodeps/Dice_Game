@@ -20,6 +20,10 @@ public class GameController {
 
     }
 
+    public ArrayList<Player> getPlayersList() {
+        return players;
+    }
+
     public void createPlayer(String name) throws Exception {
         boolean alreadyExists = false;
 

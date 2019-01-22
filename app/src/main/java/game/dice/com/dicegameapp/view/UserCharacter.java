@@ -13,7 +13,12 @@ public class UserCharacter {
     public UserCharacter(String name, String info, int picture) {
         this.name = name;
         this.info = info;
-        //this.picture = picture;
+        this.picture = picture;
+    }
+
+    public UserCharacter(String name, String info) {
+        this.name = name;
+        this.info = info;
     }
 
     public String getName() {
@@ -24,10 +29,7 @@ public class UserCharacter {
         return info;
     }
 
-    /*public int getPicture() {
-        return picture;
-    }
-    */
+    public int getPicture() { return picture; }
 
     public void setName(String name) {
         this.name = name;
@@ -37,8 +39,6 @@ public class UserCharacter {
         this.info = info;
     }
 
-    /*public void setPicture(int picture) {
-        this.picture = picture;
-    }
-    */
+    public void setPicture(int picture) { this.picture = picture; }
+
 }

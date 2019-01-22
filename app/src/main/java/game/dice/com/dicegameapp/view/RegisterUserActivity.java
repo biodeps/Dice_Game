@@ -14,14 +14,15 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     EditText editTextUsername; // declaro la variable como un objeto editText, no como un String! Luego obtendré su String
 
-    protected static GameController currentGame = new GameController(); // TODO Comprobar que efectivamente debe ser static
+    protected GameController currentGame = new GameController(); // Lo declaramos sin static: Mientras sus variables sí sean estáticas, simplemente
+                                                                 // repetimos esta línea de declaración donde necesitemos y ya está
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
         editTextUsername = findViewById(R.id.editText_username);
-        
+
     }
 
     @Override

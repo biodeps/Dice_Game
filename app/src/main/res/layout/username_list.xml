@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     >
 
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="@color/userBack"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,39 +23,32 @@
 
         <ImageView
             android:id="@+id/imageUserAvatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="left"
-            android:layout_weight="0.5"
+
             android:scaleType="fitXY"
             tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="vertical"
-            android:weightSum="2">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_weight="1"
                 android:autoSizeMaxTextSize="34sp"
                 android:autoSizeMinTextSize="12sp"
                 android:autoSizeTextType="uniform"
                 android:text="@string/example_Username"
-
                 android:textAppearance="@android:style/TextAppearance.Holo.Large" />
 
             <TextView
                 android:id="@+id/textDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_weight="1"
                 android:autoSizeMaxTextSize="20sp"
                 android:autoSizeMinTextSize="12sp"
                 android:autoSizeTextType="uniform"
@@ -70,9 +63,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="3dp"
-
-        android:background="@color/colorPrimary"
+        android:background="@color/allBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

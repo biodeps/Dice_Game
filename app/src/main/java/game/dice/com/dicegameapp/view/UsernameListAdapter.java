@@ -10,15 +10,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import game.dice.com.dicegameapp.R;
+import game.dice.com.dicegameapp.application.GameController;
+import game.dice.com.dicegameapp.domain.Player;
 
 public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapter.ViewHolderData> {
 
-    ArrayList<UserCharacter> userArrayList; // creo la lista de usuarios que se pondrá en el recycleview
+    ArrayList<Player> userArrayList; // creo la lista de usuarios que se pondrá en el recycleview
+    protected GameController currentGame = new GameController();
 
-    public UsernameListAdapter(ArrayList<UserCharacter> userArrayList) {
+
+    protected UsernameListAdapter(ArrayList<Player> userArrayList) {
         this.userArrayList = userArrayList;
     }
-
 
 
     @Override
@@ -32,25 +35,28 @@ public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapte
     public void onBindViewHolder(ViewHolderData holder, int position) {
         //establece la comunicación entre nuestro adaptador y el ViewHolderData: Asigna los datos
         holder.name.setText(userArrayList.get(position).getName());
-        holder.info.setText(userArrayList.get(position).getInfo());
-        //holder.avatar.setImageResource(userArrayList.get(position).getPicture());
+        holder.info.setText(userArrayList.get(position).getAverageScore());
+
+        // holder.avatar.setImageResource(userArrayList.get(position).getPicture());
     }
 
     @Override
     public int getItemCount() { // ha de retornar el tamaño de la lista
+
         return userArrayList.size();
     }
 
-    public class ViewHolderData extends RecyclerView.ViewHolder {
+    public static class ViewHolderData extends RecyclerView.ViewHolder {
 
         TextView name, info;
-        ImageView avatar;
+        // ImageView avatar;
 
         public ViewHolderData(View itemView) {
             super(itemView); // Constructor
             name = itemView.findViewById(R.id.textUsername);
             info = itemView.findViewById(R.id.textDescription);
-            avatar = itemView.findViewById(R.id.imageUserAvatar);
+            // avatar = itemView.findViewById(R.id.imageUserAvatar);
+            // Con estas referencias ya podemos empezar a alimentar la Recycler View
         }
 
     }
