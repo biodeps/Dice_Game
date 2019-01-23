@@ -1,12 +1,7 @@
 package game.dice.com.dicegameapp.application;
 
-import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import game.dice.com.dicegameapp.R;
 import game.dice.com.dicegameapp.domain.*;
 
 public class GameController {
@@ -24,6 +19,10 @@ public class GameController {
         return players;
     }
 
+    public void setCurrentPlayer (Player p) {
+        currentPlayer = p;
+    }
+
     public void createPlayer(String name) throws Exception {
         boolean alreadyExists = false;
 
@@ -39,20 +38,30 @@ public class GameController {
             players.add(currentPlayer);
         } else {
             throw new Exception(name);
-            // [Solved] Cómo hacer para que coja el String de los res ?: Lanzo la exception y en su activity ya cojo el resource
+            // [Solved] Cómo hacer para que coja el String de los resources?: Lanzo la exception y en su activity ya cojo el resource
         }
 
     }
 
-    public String getPlayerName() {
+    public String getCurrentPlayerName() {
         return currentPlayer.getName();
     }
+
+    public int getCurrentPlayerNumberOfGames() { return currentPlayer.getAllGames().size();}
 
     public boolean playGame() {
         Game game = new Game();
         boolean hasWon = game.playGame();
         currentPlayer.addGame(game);
         return hasWon;
+    }
+
+    public int getLeftDiceLastValue () {
+        return currentPlayer.getAllGames().get(currentPlayer.getAllGames().size()-1).getLeftDice();
+    }
+
+    public int getRightDiceLastValue () {
+        return currentPlayer.getAllGames().get(currentPlayer.getAllGames().size()-1).getRightDice();
     }
 
     public String getPlayerGamesToString() {

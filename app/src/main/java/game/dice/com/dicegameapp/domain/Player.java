@@ -3,6 +3,8 @@ package game.dice.com.dicegameapp.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import game.dice.com.dicegameapp.R;
+
 public class Player {
 
 	private String name;
@@ -16,7 +18,11 @@ public class Player {
 		return name;
 	}
 
-	public String getAverageScore(){
+	public int getPicture() {
+		return (R.id.imageUserAvatar);
+	}
+
+	public String getAverageScore(){ // Esta función se usa cuando se muestra la lista de usuarios, NO en el Ranking
 		if (games.size() == 0) {
 			return ("This user hasn't played yet.");
 		}
@@ -26,8 +32,7 @@ public class Player {
 				wins++;
 			}
 		}
-
-		return ("WIN RATE: " + (100 * wins / games.size()) + " %");
+		return ("WIN RATE: " + String.format("%.2f", 100.0 * wins / (games.size())) + " %  (Win: " + (wins) + ", Lost: " + (games.size()-wins) + ")");
 	}
 	
 	public void addGame(Game game){

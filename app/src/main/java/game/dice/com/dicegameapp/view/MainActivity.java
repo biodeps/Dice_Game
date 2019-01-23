@@ -71,16 +71,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(rankingIntent);
     }
 
-    public void resetAll(View view) {
-
-        // NO LANZA ACTIVIDADES, SÓLO RESETEARÁ LOS USUARIOS Y EL RANKING
+    public void exitApp(View view) {
+        finish();
     }
-
-
-    //TODO crear funcion que reciba el intent desde RegisterUserActivity (ya lanzado)
-
-    //string string = intent.getString("user");
-
-    //TODO enviarlo a controller mediante el objeto controller para que haga lo que sea
 
 }

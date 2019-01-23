@@ -10,17 +10,6 @@ public class UserCharacter {
 
     }
 
-    public UserCharacter(String name, String info, int picture) {
-        this.name = name;
-        this.info = info;
-        this.picture = picture;
-    }
-
-    public UserCharacter(String name, String info) {
-        this.name = name;
-        this.info = info;
-    }
-
     public String getName() {
         return name;
     }

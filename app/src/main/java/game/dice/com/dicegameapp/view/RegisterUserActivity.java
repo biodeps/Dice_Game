@@ -1,12 +1,10 @@
 package game.dice.com.dicegameapp.view;
 
-// import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import game.dice.com.dicegameapp.R;
 import game.dice.com.dicegameapp.application.GameController;
 
@@ -22,13 +20,6 @@ public class RegisterUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
         editTextUsername = findViewById(R.id.editText_username);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // TODO actualitzar llistats d'usuaris
     }
 
     public void setUserName(View view) {
@@ -36,10 +27,11 @@ public class RegisterUserActivity extends AppCompatActivity {
 
         try {
             currentGame.createPlayer(userName);
-            Toast.makeText(this, getString(R.string.toastCreatedUser), Toast.LENGTH_LONG).show(); // New player created :)
+            Toast.makeText(this, getString(R.string.toastCreatedUser), Toast.LENGTH_LONG).show();
+            finish();
         } catch (Exception e){
             if (e.getMessage().equals("")) {
-                Toast.makeText(this, getString(R.string.toastInvalidUser), Toast.LENGTH_LONG).show(); // User can't be empty
+                Toast.makeText(this, getString(R.string.toastInvalidUser), Toast.LENGTH_LONG).show();
             } else {
                 // "else" means the user already exists
                 Toast.makeText(this, "Username " + e.getMessage() + " already exists.", Toast.LENGTH_LONG).show();

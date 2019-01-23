@@ -1,22 +1,21 @@
 package game.dice.com.dicegameapp.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import game.dice.com.dicegameapp.R;
 import game.dice.com.dicegameapp.application.GameController;
 import game.dice.com.dicegameapp.domain.Player;
-
 
 public class SelectUserActivity extends AppCompatActivity {
 
     ArrayList<Player> userArrayList;
     RecyclerView recyclerPlayers;
-    UsernameListAdapter adapter;
+    protected UsernameListAdapter adapter;
     protected GameController currentGame = new GameController();
 
     @Override
@@ -33,17 +32,34 @@ public class SelectUserActivity extends AppCompatActivity {
 
         // 2 pasos finales:
         adapter = new UsernameListAdapter(userArrayList);
+
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // implementación del método onClick que he generado en mi adaptador
+                String currentUserName = userArrayList.get(recyclerPlayers.getChildAdapterPosition(view)).getName(); // String del currentUserName
+                for (Player p: userArrayList) {
+                    if (p.getName().equals(currentUserName)) { // encuentro el usuario con el que voy a jugar, y lo asigno
+                        currentGame.setCurrentPlayer(p);
+                    }
+                }
+                Intent newGameIntent = new Intent(getApplicationContext(), PlayGameActivity.class);
+                startActivity(newGameIntent);
+            }
+        });
+
         recyclerPlayers.setAdapter(adapter);
         fillAllPlayers();
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
+
     private void fillAllPlayers(){
-
-        //TODO ACCEDER A LOS PLAYERS DEL CURRENTGAME PARA RELLENARLOS EN UN FOREACH
-        // OLD: userArrayList.add(new UserCharacter("DEFAULT NAME", "DEFAULT INFO", R.drawable.play_button));
         userArrayList.addAll(currentGame.getPlayersList());
-
         adapter.notifyDataSetChanged(); //notifica que s'ha modificat l'arraylist i actualitza automàticament
     }
 
