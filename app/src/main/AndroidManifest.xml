@@ -20,7 +20,7 @@
         <activity android:name=".view.InfoActivity" />
         <activity android:name=".view.SelectUserActivity" />
         <activity android:name=".view.RegisterUserActivity" />
-        <activity android:name=".view.ViewRankingActivity" />
+        <activity android:name=".view.ViewScoreActivity" />
     </application>
 
 </manifest>

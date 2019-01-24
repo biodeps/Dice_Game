@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goPlay(View view) {
         Intent playIntent = new Intent(this, SelectUserActivity.class);
+        playIntent.putExtra("ranking", false);
         startActivity(playIntent);
     }
 
@@ -67,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goRanking(View view) {
-        Intent rankingIntent = new Intent(this, ViewRankingActivity.class);
+        Intent rankingIntent = new Intent(this, SelectUserActivity.class);
+        rankingIntent.putExtra("ranking", true);
         startActivity(rankingIntent);
     }
 

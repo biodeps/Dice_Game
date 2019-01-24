@@ -25,10 +25,9 @@ public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapte
 
 
     @Override
-    public ViewHolderData onCreateViewHolder(ViewGroup parent, int viewType) { // enlaza el adaptador con el archivo username_list
+    public ViewHolderData onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.username_list, null, false);
-        view.setOnClickListener(this); // para que pueda escuchar el evento de selección
-        //arriba he inflado el view con el contenido del layout y abajo lo retorno:
+        view.setOnClickListener(this);
         return new ViewHolderData(view);
     }
 
@@ -36,15 +35,13 @@ public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolderData holder, int position) {
-        // establece la comunicación entre nuestro adaptador y el ViewHolderData: Asigna los datos
         holder.name.setText(userArrayList.get(position).getName());
         holder.info.setText(userArrayList.get(position).getAverageScore());
         holder.avatar.setImageResource(R.drawable.user_avatar); // Random avatar para futuras ampliaciones
     }
 
     @Override
-    public int getItemCount() { // ha de retornar el tamaño de la lista
-
+    public int getItemCount() {
         return userArrayList.size();
     }
 
@@ -54,7 +51,7 @@ public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapte
 
 
     @Override
-    public void onClick(View view) { // hace falta el implements View.OnClickListener en cabecera. Añade eventos onClick a los elementos de la recycler
+    public void onClick(View view) {
         if (listener != null) {
             listener.onClick(view);
         }
@@ -66,11 +63,10 @@ public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapte
         ImageView avatar;
 
         public ViewHolderData(View itemView) {
-            super(itemView); // Constructor
+            super(itemView);
             name = itemView.findViewById(R.id.textUsername);
             info = itemView.findViewById(R.id.textDescription);
             avatar = itemView.findViewById(R.id.imageUserAvatar);
-            // Con estas referencias ya podemos empezar a alimentar la Recycler View
         }
 
     }

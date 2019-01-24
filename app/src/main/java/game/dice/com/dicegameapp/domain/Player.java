@@ -1,11 +1,14 @@
 package game.dice.com.dicegameapp.domain;
 
+import android.support.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import game.dice.com.dicegameapp.R;
 
-public class Player {
+public class Player implements Serializable, Comparable<Player> {
 
 	private String name;
 	private List<Game> games = new ArrayList<>();
@@ -34,6 +37,16 @@ public class Player {
 		}
 		return ("WIN RATE: " + String.format("%.2f", 100.0 * wins / (games.size())) + " %  (Win: " + (wins) + ", Lost: " + (games.size()-wins) + ")");
 	}
+
+	private float getWinRate() {
+		int wins = 0;
+		for(Game g: games){
+			if (g.hasWon()) {
+				wins++;
+			}
+		}
+		return ((float)(100*wins/games.size()));
+	}
 	
 	public void addGame(Game game){
 		this.games.add(game);
@@ -42,4 +55,17 @@ public class Player {
 	public List<Game> getAllGames() {
 		return games;
 	}
+
+
+	@Override
+    public int compareTo(Player comparePlayer) {
+	    float difference = comparePlayer.getWinRate()-this.getWinRate();
+	    if (difference > 0.0) return 1;
+	    else if (difference < 0.0) return -1;
+        return 0;
+    }
+
+
+
+
 }

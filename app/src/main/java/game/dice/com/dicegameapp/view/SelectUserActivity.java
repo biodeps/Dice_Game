@@ -6,47 +6,65 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import game.dice.com.dicegameapp.R;
 import game.dice.com.dicegameapp.application.GameController;
 import game.dice.com.dicegameapp.domain.Player;
 
 public class SelectUserActivity extends AppCompatActivity {
 
-    ArrayList<Player> userArrayList;
+    static ArrayList<Player> userArrayList;
     RecyclerView recyclerPlayers;
     protected UsernameListAdapter adapter;
     protected GameController currentGame = new GameController();
+    boolean ranking = false;
+    TextView recyclerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_user);
-
+        ranking = getIntent().getExtras().getBoolean("ranking", false);
         userArrayList = new ArrayList<>();
-        // le linkeo la recyclerView
         recyclerPlayers = findViewById(R.id.recyclerId);
-        // forma de presentar los datos
         recyclerPlayers.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-
-        // 2 pasos finales:
         adapter = new UsernameListAdapter(userArrayList);
+        recyclerTextView = findViewById(R.id.textView_SelectUser);
+
+        if (ranking) {
+            recyclerTextView.setText(R.string.text_HallOfFame);
+        }
 
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // implementación del método onClick que he generado en mi adaptador
-                String currentUserName = userArrayList.get(recyclerPlayers.getChildAdapterPosition(view)).getName(); // String del currentUserName
+            public void onClick(View view) {
+                String currentUserName = userArrayList.get(recyclerPlayers.getChildAdapterPosition(view)).getName();
+                Player selectedPlayer = new Player("");
                 for (Player p: userArrayList) {
-                    if (p.getName().equals(currentUserName)) { // encuentro el usuario con el que voy a jugar, y lo asigno
-                        currentGame.setCurrentPlayer(p);
+                    if (p.getName().equals(currentUserName)) {
+                        currentGame.setCurrentPlayer(p); // Aquí se obtiene el jugador seleccionado
+                        selectedPlayer = p;
                     }
                 }
-                Intent newGameIntent = new Intent(getApplicationContext(), PlayGameActivity.class);
-                startActivity(newGameIntent);
+                if (ranking) {
+                    // si lo que quería era ver su ranking, voy a otra Activity
+                    Intent rankingIntent = new Intent(getApplicationContext(), ViewScoreActivity.class);
+                    rankingIntent.putExtra("player", selectedPlayer);
+                    startActivity(rankingIntent);
+                } else {
+                    // si no quería ver su ranking, iré a la activity de jugar
+                    Intent newGameIntent = new Intent(getApplicationContext(), PlayGameActivity.class);
+                    startActivity(newGameIntent);
+                }
+
             }
         });
-
         recyclerPlayers.setAdapter(adapter);
         fillAllPlayers();
     }
@@ -60,7 +78,13 @@ public class SelectUserActivity extends AppCompatActivity {
 
     private void fillAllPlayers(){
         userArrayList.addAll(currentGame.getPlayersList());
-        adapter.notifyDataSetChanged(); //notifica que s'ha modificat l'arraylist i actualitza automàticament
+        if (ranking) {
+            //TODO ordenar
+            // TODO en la clase Player hay que poner "implements comparable" y hacer Override de sus métodos de comparación
+            Collections.sort(userArrayList);
+            adapter.notifyDataSetChanged(); //notifica que s'ha modificat l'arraylist i actualitza automàticament
+        }
+        adapter.notifyDataSetChanged();
     }
 
 }

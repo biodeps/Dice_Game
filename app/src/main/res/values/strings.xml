@@ -14,5 +14,7 @@
     <string name="toastCreatedUser">New player created</string>
     <string name="text_ThrowDices">GOOD LUCK!</string>
     <string name="text_Welcome">Welcome, %1$s! You have played %2$d times. </string>
+    <string name="text_HallOfFame">HALL OF FAME</string>
+    <string name="text_GameList">%1$s Game History:</string>
 
 </resources>
