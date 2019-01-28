@@ -15,7 +15,7 @@ import game.dice.com.dicegameapp.domain.Player;
 
 public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapter.ViewHolderData> implements View.OnClickListener{
 
-    protected ArrayList<Player> userArrayList; // creo la lista de usuarios que se pondrá en el recycleview
+    protected ArrayList<Player> userArrayList;
     private View.OnClickListener listener;
 
 
@@ -30,8 +30,6 @@ public class UsernameListAdapter extends RecyclerView.Adapter<UsernameListAdapte
         view.setOnClickListener(this);
         return new ViewHolderData(view);
     }
-
-
 
     @Override
     public void onBindViewHolder(ViewHolderData holder, int position) {

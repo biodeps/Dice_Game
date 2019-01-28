@@ -67,11 +67,23 @@ public class GameController {
     public String getPlayerGamesToString() {
         String text = "";
         List<Game> games = currentPlayer.getAllGames();
+        String result = "";
 
         for (Game game : games) {
-            text += "SUMA: " + game.getSumDices() + " RESULTAT: " + game.hasWon();
+            if (game.hasWon()) { result = "WON";}
+            else { result = "LOST"; }
+            text += ("SUM: " + game.getSumDices() + " RESULT: " + result + "\n");
         }
         return text;
+    }
+
+    public Player getPlayerByName(String name) {
+        for (Player p: players) {
+            if (p.getName().equals(name)){
+                return p;
+            }
+        }
+        return new Player("Player not found");
     }
 
     public double getPlayerRanking() {

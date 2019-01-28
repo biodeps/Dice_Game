@@ -1,6 +1,8 @@
 package game.dice.com.dicegameapp.domain;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
 
 	private Dice dice1 = new Dice();
 	private Dice dice2 = new Dice();

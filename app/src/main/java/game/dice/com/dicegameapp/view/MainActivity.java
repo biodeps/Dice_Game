@@ -11,15 +11,6 @@ import game.dice.com.dicegameapp.R;
 import game.dice.com.dicegameapp.application.GameController;
 
 public class MainActivity extends AppCompatActivity {
-    // La capa VIEW és la capa API, la que connecta amb l'usuari. Si algo es relaciona amb
-    // l'usuari, ha d'anar si o si en aquesta capa.
-
-    /*
-    Importante: En cada una de las Activities en las que necesite pasar datos, declararé un new GameController().
-    La gracia de esto es que, al ser sus campos players y currentPlayer statics, no se machacarán, y se podrán utilizar
-    y visualizar desde cada una de las Activities. Esta declaración de un new GameController() genera un objeto
-    GameController nuevo, pero la gracia es que algunos de sus campos son statics y se reutilizarán entre activities.
-     */
 
     protected GameController currentGame = new GameController();
 

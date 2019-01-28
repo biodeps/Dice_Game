@@ -1,5 +1,17 @@
 /*                        TODO This is only to gather all the learnt things during the project
 
+
+TODO BASICS
+
+    La capa VIEW és la capa API, la que connecta amb l'usuari. Si algo es relaciona amb l'usuari, ha d'anar si o si en aquesta capa.
+
+    Importante: En cada una de las Activities en las que necesite pasar datos, declararé un new GameController().
+    La gracia de esto es que, al ser sus campos players y currentPlayer statics, no se machacarán, y se podrán utilizar
+    y visualizar desde cada una de las Activities. Esta declaración de un new GameController() genera un objeto
+    GameController nuevo, pero la gracia es que algunos de sus campos son statics y se reutilizarán entre activities.
+
+
+
 TODO HOW TO SEND OBJECTS BETWEEN ACTIVITIES (PSEUDOCODE) ----- READ CAREFULLY
 
     One option could be letting your custom class implement the Serializable interface and then you can pass object instances in the intent extra using the putExtra(Serializable..) variant of the Intent#putExtra() method.
@@ -23,6 +35,10 @@ TODO HOW TO SEND OBJECTS BETWEEN ACTIVITIES (PSEUDOCODE) ----- READ CAREFULLY
             public ChildClass() {}
         }
     }
+
+
+TODO COMPARE FLOATS USING COMPARATORS (toCompare)
+    https://stackoverflow.com/questions/3705275/help-comparing-float-member-variables-using-comparators
 
 
 TODO HOW TO SORT A LIST? (NOT WORKING WITH ARRAYLISTS OF OBJECTS)

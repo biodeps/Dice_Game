@@ -1,11 +1,9 @@
 package game.dice.com.dicegameapp.domain;
 
 import android.support.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import game.dice.com.dicegameapp.R;
 
 public class Player implements Serializable, Comparable<Player> {
@@ -58,7 +56,7 @@ public class Player implements Serializable, Comparable<Player> {
 
 
 	@Override
-    public int compareTo(Player comparePlayer) {
+    public int compareTo(@NonNull Player comparePlayer) {
 	    float difference = comparePlayer.getWinRate()-this.getWinRate();
 	    if (difference > 0.0) return 1;
 	    else if (difference < 0.0) return -1;

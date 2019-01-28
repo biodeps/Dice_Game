@@ -55,7 +55,7 @@ public class SelectUserActivity extends AppCompatActivity {
                 if (ranking) {
                     // si lo que quería era ver su ranking, voy a otra Activity
                     Intent rankingIntent = new Intent(getApplicationContext(), ViewScoreActivity.class);
-                    rankingIntent.putExtra("player", selectedPlayer);
+                    rankingIntent.putExtra("player", selectedPlayer.getName());
                     startActivity(rankingIntent);
                 } else {
                     // si no quería ver su ranking, iré a la activity de jugar
@@ -79,8 +79,6 @@ public class SelectUserActivity extends AppCompatActivity {
     private void fillAllPlayers(){
         userArrayList.addAll(currentGame.getPlayersList());
         if (ranking) {
-            //TODO ordenar
-            // TODO en la clase Player hay que poner "implements comparable" y hacer Override de sus métodos de comparación
             Collections.sort(userArrayList);
             adapter.notifyDataSetChanged(); //notifica que s'ha modificat l'arraylist i actualitza automàticament
         }
